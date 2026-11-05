@@ -5,7 +5,7 @@ import MisegaLayout from '@/Layouts/MisegaLayout.vue';
 import MangaCard from '@/Components/MangaCard.vue';
 import Hero3DCarousel from '@/Components/Hero3DCarousel.vue';
 import MangaSceneBackground from '@/Components/MangaSceneBackground.vue';
-import { Sparkles, ArrowRight, BookOpen, Layers, Compass, Flame } from '@lucide/vue';
+import { ArrowRight, BookOpen, Layers, Compass } from '@lucide/vue';
 
 const props = defineProps({
     featuredMangas: { type: Array, default: () => [] },
@@ -62,8 +62,7 @@ const handleHeroMouseLeave = () => {
                         :style="{ transform: heroTransform, boxShadow: heroShadow, transition: 'transform 0.15s ease-out, box-shadow 0.3s ease' }"
                         class="md:col-span-7 bg-white/80 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-gray-200/80 space-y-5 cursor-pointer transform-gpu"
                     >
-                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-extrabold uppercase tracking-wider">
-                            <Sparkles class="w-4 h-4" />
+                        <div class="inline-flex items-center px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-extrabold uppercase tracking-wider">
                             Collection Officielle MISEGA 2026
                         </div>
 
@@ -112,8 +111,8 @@ const handleHeroMouseLeave = () => {
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div class="flex items-center justify-between mb-8">
                 <div>
-                    <div class="flex items-center gap-2 text-xs font-bold text-primary uppercase tracking-wider mb-1">
-                        <Flame class="w-4 h-4" /> Sélection Populaire
+                    <div class="text-xs font-bold text-primary uppercase tracking-wider mb-1">
+                        Sélection Populaire
                     </div>
                     <h2 class="font-gang text-2xl sm:text-3xl text-gray-900">Mangas à la Une</h2>
                 </div>

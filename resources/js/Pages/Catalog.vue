@@ -5,7 +5,7 @@ import MisegaLayout from '@/Layouts/MisegaLayout.vue';
 import MangaCard from '@/Components/MangaCard.vue';
 import Hero3DCarousel from '@/Components/Hero3DCarousel.vue';
 import MangaSceneBackground from '@/Components/MangaSceneBackground.vue';
-import { Search, Sparkles, X, BookOpen, Layers } from '@lucide/vue';
+import { Search, X, BookOpen, Layers } from '@lucide/vue';
 
 const props = defineProps({
     mangas: { type: Array, default: () => [] },
@@ -88,8 +88,7 @@ const resetFilters = () => {
                         :style="{ transform: heroTransform, boxShadow: heroShadow, transition: 'transform 0.15s ease-out, box-shadow 0.3s ease' }"
                         class="md:col-span-7 bg-white/80 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-gray-200/80 space-y-5 cursor-pointer transform-gpu"
                     >
-                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-extrabold uppercase tracking-wider">
-                            <Sparkles class="w-4 h-4 animate-spin-slow" />
+                        <div class="inline-flex items-center px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-extrabold uppercase tracking-wider">
                             Collection Officielle MISEGA 2026
                         </div>
 
