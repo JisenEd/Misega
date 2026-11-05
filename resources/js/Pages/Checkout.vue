@@ -183,7 +183,9 @@ const submitOrder = () => {
                             class="flex items-center justify-between gap-3 text-xs border-b border-gray-100 pb-2"
                         >
                             <div class="flex items-center gap-2 min-w-0">
-                                <img :src="item.cover_image" class="w-8 h-10 object-cover rounded border border-gray-200" />
+                                <div class="w-8 h-10 rounded bg-gradient-to-br from-gray-900 to-black text-white flex flex-col items-center justify-center shrink-0 border border-gray-200 shadow-sm">
+                                    <span class="font-gang text-[8px] font-bold text-primary">T.{{ item.volume_number }}</span>
+                                </div>
                                 <div class="min-w-0">
                                     <span class="font-bold text-gray-900 block truncate">{{ item.manga_title }}</span>
                                     <span class="text-gray-500 text-[10px]">Tome {{ item.volume_number }} (x{{ item.quantity }})</span>

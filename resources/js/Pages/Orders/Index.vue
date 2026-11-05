@@ -70,7 +70,9 @@ const formatDate = (dateStr) => {
                             :key="item.id"
                             class="bg-gray-50 p-3 rounded-xl border border-gray-200 flex items-center gap-3"
                         >
-                            <img :src="item.volume?.cover_image_url || item.volume?.manga?.cover_image" class="w-10 h-14 object-cover rounded border border-gray-200" />
+                            <div class="w-10 h-14 rounded bg-gradient-to-br from-gray-900 to-black text-white flex flex-col items-center justify-center shrink-0 border border-gray-200 shadow-sm">
+                                <span class="font-gang text-[9px] font-bold text-primary">T.{{ item.volume?.volume_number }}</span>
+                            </div>
                             <div class="min-w-0">
                                 <h4 class="font-bold text-xs text-gray-900 truncate">{{ item.volume?.manga?.title }}</h4>
                                 <span class="text-[11px] text-gray-500 block">Tome {{ item.volume?.volume_number }} (x{{ item.quantity }})</span>

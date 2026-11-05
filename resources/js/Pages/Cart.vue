@@ -87,11 +87,13 @@ const amountRemainingForFreeShipping = computed(() => {
                         class="bg-white border border-gray-200 rounded-2xl p-4 sm:p-5 flex items-center gap-4 sm:gap-6 shadow-sm transition hover:shadow-md"
                     >
                         <!-- Cover -->
-                        <Link :href="`/manga/${item.manga_id}`" class="w-16 sm:w-20 aspect-[3/4] rounded-xl overflow-hidden bg-gray-100 shrink-0 border border-gray-200 block relative">
-                            <div v-if="cartImgErrors[item.volume_id] || !item.cover_image" class="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center p-1 text-center select-none">
-                                <span class="font-gang text-white text-[10px] line-clamp-2 leading-none">{{ item.manga_title }}</span>
+                        <Link :href="`/manga/${item.manga_id}`" class="w-16 sm:w-20 aspect-[3/4] rounded-xl overflow-hidden bg-gradient-to-br from-gray-900 via-gray-950 to-black shrink-0 border border-gray-200 block relative p-1.5 flex flex-col justify-between items-center text-center shadow-sm">
+                            <span class="text-[7px] font-extrabold uppercase tracking-wider text-primary">MISEGA</span>
+                            <div class="my-auto">
+                                <span class="font-gang text-white text-[10px] block leading-tight line-clamp-1">{{ item.manga_title }}</span>
+                                <span class="font-bold text-[9px] text-[#BC002D] block mt-0.5">T.{{ item.volume_number }}</span>
                             </div>
-                            <img v-else :src="item.cover_image" :alt="item.manga_title" @error="cartImgErrors[item.volume_id] = true" class="w-full h-full object-cover" />
+                            <span class="text-[6px] text-gray-500 font-mono">VOL. {{ item.volume_number }}</span>
                         </Link>
 
                         <!-- Manga details -->

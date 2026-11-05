@@ -215,8 +215,8 @@ class MangaSeeder extends Seeder
                     'genre' => $genre,
                     'synopsis' => $synopsis,
                     'status' => $status,
-                    'cover_url' => $coverUrl,
-                    'cover_image' => $coverUrl,
+                    'cover_url' => null,
+                    'cover_image' => null,
                     'is_featured' => $seededCount < 6, // First 6 are featured
                 ]
             );
@@ -230,7 +230,7 @@ class MangaSeeder extends Seeder
                     [
                         'price' => $price,
                         'stock' => rand(5, 30),
-                        'cover_image_url' => $manga->cover_url ?? $manga->cover_image,
+                        'cover_image_url' => null,
                         'isbn' => '978-2-' . rand(10000, 99999) . '-' . rand(100, 999) . '-' . rand(0, 9),
                     ]
                 );

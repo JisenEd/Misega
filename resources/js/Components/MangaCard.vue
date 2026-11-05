@@ -144,29 +144,31 @@ const shortSynopsis = computed(() => {
             }"
         ></div>
 
-        <!-- ─── Cover Image Container ─── -->
-        <div class="relative aspect-[3/4] overflow-hidden bg-gray-100 cursor-pointer">
-            <!-- Parallax image: moves faster than card (foreground layer) -->
+        <!-- ─── Cover Book Container ─── -->
+        <div class="relative aspect-[3/4] overflow-hidden bg-gray-950 cursor-pointer">
             <Link :href="`/manga/${manga.id}`" class="block w-full h-full">
-                <div 
-                    v-if="hasImageError || !imageSource" 
-                    class="w-full h-full bg-gradient-to-br from-gray-800 via-gray-900 to-gray-950 flex flex-col items-center justify-center p-4 text-center select-none"
-                >
-                    <div class="font-gang text-white text-base sm:text-lg font-bold line-clamp-2 leading-tight mb-2">
-                        {{ manga.title }}
+                <div class="w-full h-full bg-gradient-to-br from-[#1c1c24] via-[#121217] to-[#0a0a0e] flex flex-col items-center justify-between p-4 sm:p-5 text-center select-none relative border-b border-gray-800">
+                    <!-- Spine Crease Shadow -->
+                    <div class="w-2 absolute inset-y-0 left-0 bg-gradient-to-r from-black/60 to-transparent"></div>
+                    
+                    <!-- Top Edition Tag -->
+                    <span class="text-[8px] sm:text-[9px] font-extrabold uppercase tracking-widest text-primary">Édition Misega</span>
+
+                    <!-- Center Title & Author -->
+                    <div class="my-auto px-1">
+                        <div class="font-gang text-white text-base sm:text-lg font-bold line-clamp-3 leading-tight mb-1.5 drop-shadow">
+                            {{ manga.title }}
+                        </div>
+                        <span class="text-[10px] font-semibold text-gray-400 uppercase tracking-wider block line-clamp-1">
+                            {{ manga.author }}
+                        </span>
                     </div>
-                    <span class="text-[10px] font-semibold text-primary uppercase tracking-widest bg-primary/10 px-2.5 py-0.5 rounded border border-primary/20">
+
+                    <!-- Bottom Genre Pill -->
+                    <span class="text-[9px] sm:text-[10px] font-extrabold text-white uppercase tracking-wider bg-white/10 px-2.5 py-0.5 rounded-full border border-white/20">
                         {{ manga.genre }}
                     </span>
                 </div>
-                <img
-                    v-else
-                    :src="imageSource"
-                    :alt="manga.title"
-                    @error="hasImageError = true"
-                    :style="imgStyle"
-                    class="w-full h-full object-cover transform-gpu will-change-transform"
-                />
             </Link>
 
             <!-- ─── Genre Badge — slides up + 3D rotates to face user ─── -->

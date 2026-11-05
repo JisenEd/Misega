@@ -122,22 +122,22 @@ const handleMouseLeave = (index) => {
             >
                 <!-- Inner Multi-Layered 3D Depth Card -->
                 <div class="relative w-full h-full transform-style-3d">
-                    <!-- Cover Image Layer -->
-                    <div v-if="imageErrors[manga.id] || !getMangaCover(manga)" class="w-full h-full bg-gradient-to-br from-gray-800 via-gray-900 to-gray-950 flex flex-col items-center justify-center p-4 text-center select-none rounded-2xl">
-                        <div class="font-gang text-white text-base sm:text-lg font-bold line-clamp-2 leading-tight mb-2">
-                            {{ manga.title }}
+                    <!-- Cover Book Layer -->
+                    <div class="w-full h-full bg-gradient-to-br from-[#1c1c24] via-[#121217] to-[#0a0a0e] flex flex-col items-center justify-between p-5 text-center select-none rounded-2xl relative">
+                        <div class="w-2.5 absolute inset-y-0 left-0 bg-gradient-to-r from-black/60 to-transparent"></div>
+                        <span class="text-[9px] font-extrabold uppercase tracking-widest text-primary">Édition Prestige</span>
+                        <div class="my-auto px-2">
+                            <div class="font-gang text-white text-lg sm:text-xl font-bold line-clamp-2 leading-tight mb-2">
+                                {{ manga.title }}
+                            </div>
+                            <span class="text-[11px] font-semibold text-gray-400 uppercase tracking-wider block">
+                                {{ manga.author }}
+                            </span>
                         </div>
-                        <span class="text-[10px] font-semibold text-primary uppercase tracking-widest bg-primary/10 px-2.5 py-0.5 rounded border border-primary/20">
+                        <span class="text-[10px] font-bold text-white uppercase tracking-widest bg-white/10 px-3 py-1 rounded-full border border-white/20">
                             {{ manga.genre }}
                         </span>
                     </div>
-                    <img 
-                        v-else
-                        :src="getMangaCover(manga)" 
-                        :alt="manga.title" 
-                        @error="handleImgError(manga.id)"
-                        class="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500"
-                    />
 
                     <!-- Dark Vignette Overlay -->
                     <div class="absolute inset-0 bg-gradient-to-t from-gray-950/90 via-gray-950/20 to-transparent"></div>

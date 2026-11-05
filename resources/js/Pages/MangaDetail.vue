@@ -61,16 +61,20 @@ const handleAddToCart = (volume) => {
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
                     <!-- Left: Main Cover Poster -->
                     <div class="lg:col-span-4 max-w-xs mx-auto lg:mx-0 w-full">
-                        <div class="aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl border-2 border-white bg-gray-100 relative">
-                            <div v-if="hasImageError || !imageSource" class="w-full h-full bg-gradient-to-br from-gray-800 via-gray-900 to-gray-950 flex flex-col items-center justify-center p-6 text-center select-none">
-                                <div class="font-gang text-white text-xl sm:text-2xl font-bold line-clamp-3 leading-tight mb-3">
+                        <div class="aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl border-2 border-white bg-gradient-to-br from-[#1c1c24] via-[#121217] to-[#0a0a0e] flex flex-col items-center justify-between p-6 text-center select-none relative">
+                            <div class="w-2.5 absolute inset-y-0 left-0 bg-gradient-to-r from-black/60 to-transparent"></div>
+                            <span class="text-[9px] font-extrabold uppercase tracking-widest text-primary">Éditions Misega</span>
+                            <div class="my-auto px-2">
+                                <div class="font-gang text-white text-2xl sm:text-3xl font-bold line-clamp-3 leading-tight mb-3">
                                     {{ manga.title }}
                                 </div>
-                                <span class="text-xs font-semibold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded border border-primary/20">
-                                    {{ manga.genre }}
+                                <span class="text-xs font-semibold text-gray-400 uppercase tracking-widest block">
+                                    {{ manga.author }}
                                 </span>
                             </div>
-                            <img v-else :src="imageSource" :alt="manga.title" @error="hasImageError = true" class="w-full h-full object-cover" />
+                            <span class="text-xs font-bold text-white uppercase tracking-widest bg-white/10 px-3.5 py-1 rounded-full border border-white/20">
+                                {{ manga.genre }}
+                            </span>
                         </div>
                     </div>
 
@@ -149,8 +153,14 @@ const handleAddToCart = (volume) => {
                     class="bg-white border border-gray-200 rounded-2xl p-5 flex gap-4 transition hover:shadow-xl relative"
                 >
                     <!-- Volume Cover -->
-                    <div class="w-24 aspect-[3/4] rounded-xl overflow-hidden bg-gray-100 shrink-0 border border-gray-200">
-                        <img :src="volume.cover_image_url || manga.cover_image" :alt="`Tome ${volume.volume_number}`" class="w-full h-full object-cover" />
+                    <div class="w-24 aspect-[3/4] rounded-xl overflow-hidden bg-gradient-to-br from-gray-900 via-gray-950 to-black shrink-0 border border-gray-200 flex flex-col items-center justify-between p-2.5 text-center select-none shadow-sm relative">
+                        <div class="w-1.5 absolute inset-y-0 left-0 bg-gradient-to-r from-black/60 to-transparent"></div>
+                        <span class="text-[8px] font-extrabold uppercase tracking-widest text-primary">MISEGA</span>
+                        <div class="my-auto">
+                            <span class="font-gang text-white text-base font-bold block leading-tight">T.{{ volume.volume_number }}</span>
+                            <span class="text-[8px] text-gray-400 line-clamp-1 mt-0.5">{{ manga.title }}</span>
+                        </div>
+                        <span class="text-[7px] text-gray-500 font-mono tracking-wider">VOL. {{ volume.volume_number }}</span>
                     </div>
 
                     <!-- Volume Info & Add to Cart -->
