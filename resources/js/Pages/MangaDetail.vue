@@ -50,7 +50,7 @@ const handleAddToCart = (volume) => {
 
     <MisegaLayout>
         <!-- Hero Header -->
-        <div class="relative bg-gradient-to-b from-gray-100 via-white to-gray-50 border-b border-gray-200 py-10 sm:py-14 overflow-hidden">
+        <div class="relative bg-gradient-to-b from-gray-100 via-white to-gray-50 border-b border-gray-200 pt-24 pb-10 sm:pt-28 sm:pb-14 overflow-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <!-- Back Link -->
                 <Link href="/catalog" class="inline-flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-gray-900 mb-6 transition">

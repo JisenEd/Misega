@@ -4,7 +4,7 @@ import { Head, router } from '@inertiajs/vue3';
 import MisegaLayout from '@/Layouts/MisegaLayout.vue';
 import MangaCard from '@/Components/MangaCard.vue';
 import MangaSceneBackground from '@/Components/MangaSceneBackground.vue';
-import { Search, Sparkles, X, BookOpen, Filter, RotateCcw } from '@lucide/vue';
+import { Search, X, BookOpen, Filter, RotateCcw } from '@lucide/vue';
 
 const props = defineProps({
     mangas: { type: Array, default: () => [] },
@@ -58,7 +58,7 @@ const activeFilterCount = computed(() => {
 
     <MisegaLayout>
         <!-- ─── Catalog Header Banner ─── -->
-        <div class="relative bg-gradient-to-b from-gray-100 via-white to-gray-50 border-b border-gray-200 py-10 sm:py-14 overflow-hidden">
+        <div class="relative bg-gradient-to-b from-gray-100 via-white to-gray-50 border-b border-gray-200 pt-24 pb-10 sm:pt-28 sm:pb-14 overflow-hidden">
             <MangaSceneBackground />
 
             <!-- Ambient glow -->
@@ -66,8 +66,7 @@ const activeFilterCount = computed(() => {
 
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="max-w-3xl space-y-3">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-extrabold uppercase tracking-wider">
-                        <Sparkles class="w-3.5 h-3.5" />
+                    <div class="inline-flex items-center px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-extrabold uppercase tracking-wider">
                         Explorez notre collection
                     </div>
                     <h1 class="font-gang text-3xl sm:text-4xl lg:text-5xl text-gray-900 font-extrabold tracking-wide">

@@ -23,7 +23,7 @@ const formatDate = (dateStr) => {
     <Head title="Mes Commandes - MISEGA" />
 
     <MisegaLayout>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-10 sm:pt-28 sm:pb-12">
             <div class="flex items-center justify-between mb-8 border-b border-gray-200 pb-4">
                 <div class="flex items-center gap-3">
                     <div class="p-3 bg-primary/10 rounded-2xl border border-primary/20 text-primary">

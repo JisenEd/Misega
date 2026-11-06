@@ -42,7 +42,7 @@ const handleHeroMouseLeave = () => {
 
     <MisegaLayout>
         <!-- ─── Hero Section with 3D Parallax & Calligraphy Animation ─── -->
-        <div class="relative bg-gradient-to-b from-gray-100 via-white to-gray-50 border-b border-gray-200 py-12 sm:py-16 overflow-hidden">
+        <div class="relative bg-gradient-to-b from-gray-100 via-white to-gray-50 border-b border-gray-200 pt-24 pb-12 sm:pt-28 sm:pb-16 lg:pt-32 overflow-hidden">
             <!-- 3D Floating Manga Pages Background Scene -->
             <MangaSceneBackground />
 

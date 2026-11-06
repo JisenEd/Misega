@@ -57,7 +57,7 @@ const submitOrder = () => {
     <Head title="Validation de votre commande - MISEGA" />
 
     <MisegaLayout>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-10 sm:pt-28 sm:pb-12">
             <div class="flex items-center justify-between mb-8 border-b border-gray-200 pb-4">
                 <h1 class="font-gang text-3xl font-extrabold text-gray-900">Tunnel de Commande</h1>
                 <Link href="/cart" class="text-xs font-bold text-gray-500 hover:text-gray-900 flex items-center gap-1">
