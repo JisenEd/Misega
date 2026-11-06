@@ -10,11 +10,42 @@ const user = computed(() => page.props.auth?.user);
 
 const isHovered = ref(false);
 const isMobileOpen = ref(false);
+const isVisible = ref(true);
 const searchQuery = ref('');
 const isSearchFocused = ref(false);
 const navbarRef = ref(null);
 
 let closeTimeout = null;
+let lastScrollY = 0;
+const scrollThreshold = 8;
+
+// Scroll detection: retract when scrolling DOWN, reveal when scrolling UP
+const handleScroll = () => {
+    if (typeof window === 'undefined') return;
+    const currentScrollY = window.scrollY || window.pageYOffset;
+
+    // Always visible at the top of page
+    if (currentScrollY <= 30) {
+        isVisible.value = true;
+        lastScrollY = currentScrollY;
+        return;
+    }
+
+    // Scrolling down -> retract
+    if (currentScrollY > lastScrollY + scrollThreshold) {
+        if (!isSearchFocused.value) {
+            isVisible.value = false;
+            isHovered.value = false;
+            isMobileOpen.value = false;
+        }
+    } 
+    // Scrolling up -> reveal
+    else if (currentScrollY < lastScrollY - scrollThreshold) {
+        isVisible.value = true;
+    }
+
+    lastScrollY = currentScrollY;
+};
 
 // Desktop hover handlers with grace period
 const handleMouseEnter = () => {
@@ -58,10 +89,12 @@ const handleClickOutside = (e) => {
 
 onMounted(() => {
     document.addEventListener('click', handleClickOutside);
+    window.addEventListener('scroll', handleScroll, { passive: true });
 });
 
 onUnmounted(() => {
     document.removeEventListener('click', handleClickOutside);
+    window.removeEventListener('scroll', handleScroll);
     if (closeTimeout) clearTimeout(closeTimeout);
 });
 
@@ -70,16 +103,21 @@ const isOpen = computed(() => isHovered.value || isMobileOpen.value);
 </script>
 
 <template>
-    <!-- Floating Top Container -->
+    <!-- Floating Top Container with Scroll Retract (Cadence délibérée) -->
     <header 
         ref="navbarRef"
-        class="fixed top-4 sm:top-6 left-1/2 -translate-x-1/2 z-50 pointer-events-auto"
+        class="fixed top-4 sm:top-6 left-1/2 -translate-x-1/2 z-50 pointer-events-auto transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+        :class="[
+            isVisible 
+                ? 'translate-y-0 opacity-100 pointer-events-auto' 
+                : '-translate-y-24 opacity-0 pointer-events-none'
+        ]"
         @mouseenter="handleMouseEnter"
         @mouseleave="handleMouseLeave"
     >
         <!-- ─── DESKTOP LIQUID GLASS CAPSULE ─── -->
         <nav 
-            class="hidden md:flex items-center justify-between transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] liquid-glass-surface"
+            class="hidden md:flex items-center justify-between transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] liquid-glass-surface"
             :class="[
                 isOpen 
                     ? 'w-[740px] lg:w-[820px] h-[60px] px-4 rounded-full shadow-2xl scale-100' 
@@ -92,11 +130,11 @@ const isOpen = computed(() => isHovered.value || isMobileOpen.value);
                 class="w-full h-full flex items-center justify-center cursor-pointer select-none relative group"
                 title="Ouvrir le menu MISEGA"
             >
-                <!-- Central Misega Book Icon -->
+                <!-- Central Misega Book Icon (Noir/Rouge version) -->
                 <img 
-                    src="/img/misega-icon-book-only-transparent.png" 
+                    src="/img/misega-icon-book-black-red.png" 
                     alt="MISEGA" 
-                    class="h-8 w-8 object-contain transition-transform duration-300 group-hover:scale-115 drop-shadow-[0_2px_8px_rgba(188,0,45,0.35)]"
+                    class="h-8 w-8 object-contain transition-transform duration-300 group-hover:scale-115 drop-shadow-[0_2px_8px_rgba(188,0,45,0.4)]"
                 />
 
                 <!-- Prismatic Specular Sheen Reflex -->
@@ -121,11 +159,11 @@ const isOpen = computed(() => isHovered.value || isMobileOpen.value);
                     title="Accueil MISEGA"
                 >
                     <img 
-                        src="/img/misega-icon-book-only-transparent.png" 
+                        src="/img/misega-icon-book-black-red.png" 
                         alt="MISEGA" 
                         class="h-7 w-7 object-contain transition-transform duration-300 group-hover:rotate-[-6deg] drop-shadow-[0_2px_6px_rgba(188,0,45,0.4)]"
                     />
-                    <span class="font-gang text-lg font-black tracking-wider text-gray-900">
+                    <span class="font-gang text-lg font-black tracking-wider text-black">
                         MI<span class="text-primary">SEGA</span>
                     </span>
                 </Link>
@@ -162,7 +200,7 @@ const isOpen = computed(() => isHovered.value || isMobileOpen.value);
                         @blur="isSearchFocused = false"
                         type="text"
                         placeholder="Rechercher..."
-                        class="w-full bg-black/[0.05] hover:bg-black/[0.08] focus:bg-white text-xs text-gray-900 placeholder-gray-500 rounded-full py-1.5 pl-8 pr-3 border border-black/[0.06] focus:border-primary/50 focus:outline-none transition-all shadow-inner"
+                        class="w-full bg-white/50 hover:bg-white/70 focus:bg-white text-xs text-gray-900 placeholder-gray-500 rounded-full py-1.5 pl-8 pr-3 border border-primary/20 focus:border-primary focus:outline-none transition-all shadow-inner"
                     />
                     <Search 
                         @click="handleSearch" 
@@ -237,7 +275,7 @@ const isOpen = computed(() => isHovered.value || isMobileOpen.value);
                 aria-label="Ouvrir le menu de navigation"
             >
                 <img 
-                    src="/img/misega-icon-book-only-transparent.png" 
+                    src="/img/misega-icon-book-black-red.png" 
                     alt="MISEGA" 
                     class="h-7 w-7 object-contain drop-shadow-[0_2px_6px_rgba(188,0,45,0.4)]"
                 />
@@ -256,11 +294,11 @@ const isOpen = computed(() => isHovered.value || isMobileOpen.value);
                 <div class="flex items-center justify-between pb-2 border-b border-black/[0.06]">
                     <Link href="/" @click="closeMobile" class="flex items-center gap-2">
                         <img 
-                            src="/img/misega-icon-book-only-transparent.png" 
+                            src="/img/misega-icon-book-black-red.png" 
                             alt="MISEGA" 
                             class="h-7 w-7 object-contain"
                         />
-                        <span class="font-gang text-lg font-black text-gray-900">MI<span class="text-primary">SEGA</span></span>
+                        <span class="font-gang text-lg font-black text-black">MI<span class="text-primary">SEGA</span></span>
                     </Link>
 
                     <div class="flex items-center gap-2">
@@ -372,30 +410,32 @@ const isOpen = computed(() => isHovered.value || isMobileOpen.value);
 </template>
 
 <style scoped>
-/* ─── 3D Liquid Glass Materiality ─── */
+/* ─── 3D Liquid Glass Materiality (Nuance Rouge Cristal & Translucidité) ─── */
 .liquid-glass-surface {
-    /* Multi-layered translucent crystal foundation */
+    /* Fond cristallin avec transparence accrue et nuance subtile de rouge Misega */
     background: linear-gradient(
         135deg,
-        rgba(255, 255, 255, 0.72) 0%,
-        rgba(255, 255, 255, 0.45) 50%,
-        rgba(255, 255, 255, 0.60) 100%
+        rgba(255, 255, 255, 0.52) 0%,
+        rgba(255, 242, 245, 0.32) 40%,
+        rgba(255, 230, 236, 0.24) 75%,
+        rgba(255, 250, 252, 0.46) 100%
     );
-    backdrop-filter: blur(28px) saturate(180%);
-    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    backdrop-filter: blur(24px) saturate(190%);
+    -webkit-backdrop-filter: blur(24px) saturate(190%);
 
-    /* 3D Convex bevel and refractive rim lighting */
-    border: 1px solid rgba(255, 255, 255, 0.85);
+    /* Biseau spéculaire lumineux et liseré rouge optique sur l'arête inférieure */
+    border: 1px solid rgba(255, 230, 236, 0.75);
     border-top: 1.5px solid rgba(255, 255, 255, 0.98);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1.5px solid rgba(188, 0, 45, 0.25);
+    border-right: 1px solid rgba(188, 0, 45, 0.14);
 
-    /* Liquid volume depth shadows & caustics */
+    /* Caustiques liquides, reflets internes rosés et ombre de contact douce */
     box-shadow: 
         inset 0 2px 4px rgba(255, 255, 255, 0.95),
-        inset 0 -2px 4px rgba(0, 0, 0, 0.04),
-        inset 0 0 16px rgba(255, 255, 255, 0.5),
-        0 16px 36px -10px rgba(0, 0, 0, 0.12),
-        0 4px 12px rgba(0, 0, 0, 0.04);
+        inset 0 -2px 6px rgba(188, 0, 45, 0.08),
+        inset 0 0 18px rgba(255, 220, 228, 0.35),
+        0 16px 38px -10px rgba(188, 0, 45, 0.14),
+        0 4px 14px -2px rgba(0, 0, 0, 0.05);
 }
 
 /* Fluid entrance animations */
@@ -411,13 +451,13 @@ const isOpen = computed(() => isHovered.value || isMobileOpen.value);
 }
 
 .animate-fade-in {
-    animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: fadeIn 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
 }
 
 @keyframes scaleUp {
     from {
         opacity: 0;
-        transform: scale(0.9) translateY(-10px);
+        transform: scale(0.92) translateY(-10px);
     }
     to {
         opacity: 1;
@@ -426,7 +466,7 @@ const isOpen = computed(() => isHovered.value || isMobileOpen.value);
 }
 
 .animate-scale-up {
-    animation: scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: scaleUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 </style>
 
