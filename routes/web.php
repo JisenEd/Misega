@@ -12,6 +12,7 @@ Route::get('/', [MangaController::class, 'home'])->name('home');
 Route::get('/catalogue', [MangaController::class, 'catalog'])->name('catalogue');
 Route::get('/catalog', [MangaController::class, 'catalog'])->name('catalog');
 Route::get('/manga/{id}', [MangaController::class, 'show'])->name('manga.show');
+Route::get('/faq', fn () => Inertia::render('Faq'))->name('faq');
 
 // Protected Routes (auth + verified)
 Route::middleware(['auth', 'verified'])->group(function () {

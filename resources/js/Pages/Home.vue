@@ -156,13 +156,13 @@ const handleHeroMouseLeave = () => {
 
         <!-- ─── Bottom CTA Banner ─── -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 rounded-3xl p-8 sm:p-12 border border-gray-700 text-white flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden shadow-2xl">
+            <div class="bg-gradient-to-br from-white via-gray-50 to-rose-50/40 rounded-3xl p-8 sm:p-12 border border-gray-200/80 text-gray-900 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden shadow-xl shadow-gray-200/50">
                 <div class="space-y-3 max-w-xl z-10">
                     <span class="inline-block text-xs font-extrabold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
                         Catalogue Complet
                     </span>
-                    <h3 class="font-gang text-3xl sm:text-4xl text-white">Plus de 500 tomes prêts à expédier</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
+                    <h3 class="font-gang text-3xl sm:text-4xl text-gray-900">Plus de 500 tomes prêts à expédier</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
                         Recherchez par titre, auteur ou genre et complétez votre collection dès aujourd'hui.
                     </p>
                 </div>
